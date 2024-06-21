@@ -1,0 +1,17 @@
+{
+     "main": [
+        { "name":"tvs"},
+        { "name":"woofers"},
+        { "name":"phones"},
+        { "name":"laptops | pc"}
+    ],
+     "more": [
+       { "name":"smart watches"},
+       { "name":"gaming services"},
+       { "name":"kitchen appliances"},   
+       { "name":"phone accessories"},
+       { "name":"pc accessories"},
+       { "name":"public address systems"}
+       
+   ]
+}
