@@ -41,7 +41,7 @@ export default function SelectedHome() {
   const navigate = useNavigate();
   const { fetchData } = useFetch();
   const [loading, setLoading] = useState(false);
-  const { fetchFsm } = useFechItems();
+  const { fetchCards } = useFechItems();
   const location = useLocation();
   const [errorPage, setErrorPage] = useState({ isError: false, type: null });
   const [filter, setFilter] = useState([]);
@@ -165,7 +165,7 @@ export default function SelectedHome() {
         queryParams.set(type, params.type);
 
         const res = await fetchData(`/all/getItems?${queryParams.toString()}`);
-        fetchFsm(false);
+        fetchCards(false);
         if (!res.ok) {
           setErrorPage({
             isError: true,

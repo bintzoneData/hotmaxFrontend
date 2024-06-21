@@ -14,7 +14,7 @@ function ProductView() {
   const brands = mainDetails.data?.brands;
   const [loading, setLoading] = useState(false);
   const { fetchData } = useFetch();
-  const { fetchFsm } = useFechItems();
+  const { fetchCards } = useFechItems();
   const categories = mainDetails.data?.categories;
   const items = itemsData.data;
   const [products, setProducts] = useState([]);
@@ -39,7 +39,6 @@ function ProductView() {
     return text;
   };
   useLayoutEffect(() => {
-    let value = null;
     const type = findType(params.type.trim().replace(/\s+/g, ''));
     if (!type) {
       setErrorPage({
@@ -59,7 +58,7 @@ function ProductView() {
         const res = await fetchData(
           `/all/getItems?${type}=${params.type}&name=${normalizedParams}`
         );
-        fetchFsm(false);
+        fetchCards(false);
         if (!res.ok) {
           setErrorPage({
             isError: true,

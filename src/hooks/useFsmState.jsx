@@ -43,10 +43,26 @@ export const useFechItems = () => {
       return;
     }
     setItemsLoading(false);
+    const bigBanners = res.data.bigBanners;
+    for (const data of bigBanners) {
+      data.imgUrl = await ImageSrc(data.imgUrl);
+    }
+    const topBrands = res.data.topBrands;
+    for (const data of topBrands) {
+      data.imgUrl = await ImageSrc(data.imgUrl);
+    }
+    const slideCards = res.data.slideCards;
+    for (const data of slideCards) {
+      data.imgUrl = await ImageSrc(data.imgUrl);
+    }
     setCardsData({
       isFetched: true,
       error: null,
-      data: res.data,
+      data: {
+        bigBanners: bigBanners,
+        topBrands: topBrands,
+        slideCards: slideCards,
+      },
     });
   };
   const fetchFsm = async () => {

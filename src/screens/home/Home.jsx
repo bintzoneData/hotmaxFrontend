@@ -49,11 +49,30 @@ const Home = () => {
     });
   };
   const fetchQuietly = async () => {
-    const res = await fetchPrivateData('/all');
+    const res = await fetchPrivateData('/all/cards');
     if (!res.ok) {
       return;
     }
-    setCardsData((prev) => ({ ...prev, data: res.data }));
+    const bigBanners = res.data.bigBanners;
+    for (const data of bigBanners) {
+      data.imgUrl = await ImageSrc(data.imgUrl);
+    }
+    const topBrands = res.data.topBrands;
+    for (const data of topBrands) {
+      data.imgUrl = await ImageSrc(data.imgUrl);
+    }
+    const slideCards = res.data.slideCards;
+    for (const data of slideCards) {
+      data.imgUrl = await ImageSrc(data.imgUrl);
+    }
+    setCardsData((prev) => ({
+      ...prev,
+      data: {
+        bigBanners: bigBanners,
+        topBrands: topBrands,
+        slideCards: slideCards,
+      },
+    }));
   };
   useEffect(() => {
     socket.on('updateBigBanners', () => {
